@@ -12,4 +12,7 @@ class EfloraClient:
         self._session.headers.update(Default_Header)
 
     def search(self, name):
-        pass
+        url = Eflora_Search_URL + '/' + name + '?page=1'
+        print url
+        r = self._session.get(url)
+        return r.content

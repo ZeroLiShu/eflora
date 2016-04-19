@@ -13,4 +13,5 @@ Default_Header = {'Referer': 'http://frps.eflora.cn',
                   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36',
                   'Host': 'frps.eflora.cn'}
 
-Eflora_URL = 'http://http://frps.eflora.cn/frps'
+Eflora_URL = 'http://frps.eflora.cn'
+Eflora_Search_URL = Eflora_URL + '/search'

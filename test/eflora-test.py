@@ -6,11 +6,11 @@ __author__ = 'ZeroLiShu'
 from plant import EfloraClient, Plant
 
 def test_plant():
-    pass
+    client.search('a')
 
 def test():
     test_plant()
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     client = EfloraClient()
     test()
