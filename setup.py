@@ -6,14 +6,11 @@ from __future__ import unicode_literals
 import re
 import ast
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
 
 
 def extract_version():
-    with open('elora/__init__.py', 'rb') as f_version:
+    with open('plant/__init__.py', 'rb') as f_version:
         ast_tree = re.search(
             r'__version__ = (.*)',
             f_version.read().decode('utf-8')
@@ -23,10 +20,9 @@ def extract_version():
         return str(ast.literal_eval(ast_tree))
 
 
-with open('README.rst', 'rb') as f_readme:
+with open('README.md', 'rb') as f_readme:
     readme = f_readme.read().decode('utf-8')
 
-packages = ['eflora']
 
 version = extract_version()
 
@@ -35,7 +31,7 @@ setup(
     version=version,
     keywords=['eflora', 'network', 'spider', 'html'],
     description='Eflora UNOFFICIAL API library in python2.x, '
-                'with help of bs4, lxml, requests and html2text.',
+                'with help of bs4, lxml, requests and.',
     long_description=readme,
 
     author='ZeroLiShu',
@@ -48,12 +44,11 @@ setup(
     install_requires=[
         'beautifulsoup4',
         'requests',
-        'html2text'
     ],
     extras_require={
         'lxml': ['lxml']
     },
-    packages=packages,
+    packages=find_packages(),
 
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -61,7 +56,7 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ]
