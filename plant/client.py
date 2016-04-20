@@ -15,4 +15,7 @@ class EfloraClient:
         url = Eflora_Search_URL + '/' + name + '?page=1'
         print url
         r = self._session.get(url)
-        return r.content
+        soup = BeautifulSoup(r.content)
+        divpage = soup.find('div', id='divpage')
+        alist = divpage.find_all('a')
+        pagenum = alist[len(alist) - 2].text
