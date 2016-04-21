@@ -19,8 +19,11 @@ class EfloraClient:
         r = self._session.get(pageurl)
         soup = BeautifulSoup(r.content)
 
-        table = soup.select("table[cellSpacing='0']")
-        print table
+        for tr in soup.find_all('tr'):
+            if tr.has_attr('style'):
+                for td in tr.children:
+                    print td
+
         #for tr in table:
         #    plantdict = {}
         #    tdlist = BeautifulSoup(tr).find_all('td')
