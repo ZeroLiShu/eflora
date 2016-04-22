@@ -21,22 +21,14 @@ class EfloraClient:
 
         for tr in soup.find_all('tr'):
             if tr.has_attr('style'):
-                for td in tr.children:
-                    print td
-
-        #for tr in table:
-        #    plantdict = {}
-        #    tdlist = BeautifulSoup(tr).find_all('td')
-        #    assert 5 == len(tdlist)
-        #    plantdict['name'] = tdlist[0].text
-        #    plantdict['latin'] = tdlist[1].text
-        #    plantdict['alias'] = tdlist[2].text
-        #    plantdict['slug'] = tdlist[3].text
-        #    plantdict['url'] = Eflora_URL + tdlist[4]['href']
-
-        #    print '----one row---'
-        #    print plantdict
-        #    plantlist.append(plantdict)
+                assert 5 == len(tr.children)
+                plantdict = {}
+                plantdict['name'] = tr.children[0].string
+                plantdict['latin'] = tr.children[1].string
+                plantdict['alias'] = tr.children[2].string
+                plantdict['slug'] = tr.children[3].string
+                plantdict['url'] = Eflora_URL + tr.children[4]['href']
+                plantlist.append(plantdict)
 
         return plantlist
 
