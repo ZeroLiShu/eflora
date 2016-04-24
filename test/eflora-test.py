@@ -6,7 +6,7 @@ __author__ = 'ZeroLiShu'
 from plant import EfloraClient, Plant
 
 def test_plant():
-    client.search('a')
+    client.search('Abelia')
 
 def test():
     test_plant()
