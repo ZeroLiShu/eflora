@@ -14,7 +14,12 @@ class Plant(BaseEflora):
         self._slug = slug
     
     def position(self):
-        pass
+        if not self._position:
+            _make_soup()
+            self._position = []
+            divrightcon = self._soup.find('div', class_='divrightcon')
+            for span in divrightcon.find_all('span'):
+                self._position.append(span.string)
     
     def relatives(self):
         pass
