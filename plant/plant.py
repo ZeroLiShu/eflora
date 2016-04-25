@@ -55,5 +55,11 @@ class Plant(BaseEflora):
         pass
     
     def subclass(self):
-        pass
+        if not self._subclass:
+            _make_soup()
+            self._subclass = []
+            listlower = self._soup.find('div', id='listlower')
+            for span in listlower.find_all('span'):
+                self._subclass.append(span.string)
+        return self._subclass
 
