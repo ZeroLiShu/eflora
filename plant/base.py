@@ -6,7 +6,7 @@ class BaseEflora:
         self._soup = BeautifulSoup(content)
 
     def _get_content(self):
-        resp = self._session.get(self.url[:-1])
+        resp = self._session.get(self._url[:-1])
         return resp.content
 
     def _make_soup(self):
