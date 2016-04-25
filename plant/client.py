@@ -21,13 +21,18 @@ class EfloraClient:
 
         for tr in soup.find_all('tr'):
             if tr.has_attr('style'):
-                assert 5 == len(tr.children)
                 plantdict = {}
-                plantdict['name'] = tr.children[0].string
-                plantdict['latin'] = tr.children[1].string
-                plantdict['alias'] = tr.children[2].string
-                plantdict['slug'] = tr.children[3].string
-                plantdict['url'] = Eflora_URL + tr.children[4]['href']
+                for idx, td in enumerate(tr.children):
+                    if 0 == idx % 5:
+                        plantdict['name'] = td.string
+                    elif 1 == idx % 5:
+                        plantdict['latin'] = td.string
+                    elif 2 == idx % 5:
+                        plantdict['alias'] = td.string
+                    elif 3 == idx % 5:
+                        plantdict['slug'] = td.string
+                    elif 4 == idx % 5:
+                        plantdict['url'] = Eflora_URL + td['href']
                 plantlist.append(plantdict)
 
         return plantlist
