@@ -6,7 +6,7 @@ from .base import BaseEflora
 class Plant(BaseEflora):
 
     def __init__(self, url, name=None, latin=None, alias=None, slug=None, session=None):
-        self.url = url
+        self._url = url
         self._session = session
         self._name = name
         self._latin = name
@@ -20,10 +20,24 @@ class Plant(BaseEflora):
         pass
     
     def fullname(self):
-        pass
-    
+        if not self._fullname:
+            _make_soup()
+            spSynSpan = self._soup.find('span', id='spSyn')
+            self._fullname = spSynSpan.previous_sibling
+        return self._fullname
+
     def description(self):
-        pass
+        if not self._description:
+            _make_soup()
+            description = []
+            divkey = self._soup.find('div', id='divkey')
+            for p in divkey.previous_siblings:
+                if p.has_attr('style'):
+                    description.append(p.string)
+        for desc in description.reverse():
+            self._description += desc
+            self._description += '\r\n'
+        return self._description
     
     def indextable(self):
         pass
