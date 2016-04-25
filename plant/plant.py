@@ -52,7 +52,10 @@ class Plant(BaseEflora):
         return self._description
     
     def indextable(self):
-        pass
+        fullname = self.fullname()
+        ajax_url = Eflora_URL + '/getfrpskey.aspx?s=' + fullname.replace(' ', '+')
+        r = self._session.get(ajax_url)
+        return r.content
     
     def subclass(self):
         if not self._subclass:
