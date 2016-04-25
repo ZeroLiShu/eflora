@@ -20,9 +20,16 @@ class Plant(BaseEflora):
             divrightcon = self._soup.find('div', class_='divrightcon')
             for span in divrightcon.find_all('span'):
                 self._position.append(span.string)
+        return self._position
     
     def relatives(self):
-        pass
+        if not self._relatives:
+            _make_soup()
+            self._relatives = []
+            divrightcon2 = self._soup.find('div', class_='divrightcon2')
+            for span in divrightcon2.find_all('span'):
+                self._relatives.append(span.string)
+        return self._relatives
     
     def fullname(self):
         if not self._fullname:
